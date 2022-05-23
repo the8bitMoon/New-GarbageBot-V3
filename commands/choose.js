@@ -8,7 +8,7 @@ module.exports = {
 			option
 				.setName('list')
 				.setDescription('Enter a list of options separated by `|`.')
-				.setRequired(true)
+				.setRequired(true),
 		),
 	async execute(interaction) {
 		const list = interaction.options.getString('list').split(/\s*\|\s*/);

@@ -8,7 +8,7 @@ module.exports = {
 			option
 				.setName('text')
 				.setDescription('The message to repeat.')
-				.setRequired(true)
+				.setRequired(true),
 		),
 	async execute(interaction) {
 		const message = interaction.options.getString('text');
