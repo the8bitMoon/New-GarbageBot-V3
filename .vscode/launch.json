@@ -1,26 +1,19 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-node",
+            "type": "node-terminal",
+            "name": "Run Script: test",
             "request": "launch",
-            "name": "Test Bot",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\npm run test"
+            "command": "npm run test",
+            "cwd": "${workspaceFolder}"
         },
         {
-            "type": "pwa-node",
+            "type": "node-terminal",
+            "name": "Run Script: deploy",
             "request": "launch",
-            "name": "Deploy Commands",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\npm run deploy"
+            "command": "npm run deploy",
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
