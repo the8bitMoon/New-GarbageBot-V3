@@ -16,7 +16,6 @@ module.exports = {
 		const raw = interaction.options.getString('expression');
 		const regexp = /\d+(?:\s*d\s*\d+)?/;
 		if (regexp.test(raw)) {
-			console.log('Valid expression/');
 			const dice = raw.split(/\s*d\s*/);
 			if (dice.length == 1) {
 				// roll one die
@@ -24,7 +23,6 @@ module.exports = {
 				return interaction.reply(`You rolled a ${result}.`);
 			} else {
 				const rolls = [];
-				console.log(dice[0]);
 				// roll the specified die the specified number of times
 				for (let i = 0; i < dice[0]; i++) {
 					rolls.push(Math.ceil(Math.random() * dice[1]));

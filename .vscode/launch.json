@@ -14,6 +14,13 @@
             "request": "launch",
             "command": "npm run deploy",
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "node-terminal",
+            "name": "Run Script: deploy-global",
+            "request": "launch",
+            "command": "npm run deploy-global",
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
