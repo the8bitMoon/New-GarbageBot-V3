@@ -104,7 +104,7 @@ module.exports = {
 			.then((message) => {
 				const collector = message.createMessageComponentCollector({
 					componentType: 'BUTTON',
-					time: this.client.helpers.minutes(15),
+					time: interaction.client.helpers.minutes(15),
 					max: 99,
 				});
 

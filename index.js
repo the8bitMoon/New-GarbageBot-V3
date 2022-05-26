@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Intents } = require('discord.js');
 const dotenv = require('dotenv');
-const helpers = require('helpers.js');
+const helpers = require(path.join(__dirname, 'helpers.js'));
 
 dotenv.config();
 // const { clientId, testGuilds, token } = require('./config.json');
