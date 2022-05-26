@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Intents } = require('discord.js');
 const dotenv = require('dotenv');
+const helpers = require('helpers.js');
 
 dotenv.config();
 // const { clientId, testGuilds, token } = require('./config.json');
@@ -19,6 +20,8 @@ for (const file of commandFiles) {
 	const command = require(filePath);
 	client.commands.set(command.data.name, command);
 }
+
+client.helpers = helpers;
 
 client.once('ready', () => {
 	console.log('Ready!');
