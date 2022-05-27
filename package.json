@@ -8,7 +8,7 @@
     "test": "node index.js",
     "deploy": "node deploy-commands.js",
     "clear": "node clear-guild-commands.js",
-    "deploy-global": "node deploy-commands-global.js"
+    "deploy-main": "node deploy-commands-main.js"
   },
   "repository": {
     "type": "git",

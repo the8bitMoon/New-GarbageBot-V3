@@ -19,7 +19,7 @@ for (const file of commandFiles) {
 	commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: '9' }).setToken(process.env.token);
+const rest = new REST({ version: '9' }).setToken(process.env.mainToken);
 
 rest
 	.put(Routes.applicationCommands(process.env.clientId), { body: commands })

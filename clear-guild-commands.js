@@ -23,7 +23,7 @@ testGuilds = process.env.testGuilds.split(',');
 // 	commands.push(command.data.toJSON());
 // }
 
-const rest = new REST({ version: '9' }).setToken(process.env.token);
+const rest = new REST({ version: '9' }).setToken(process.env.testToken);
 
 console.log(`Testing guild IDs: ${testGuilds}`);
 for (const guildId of testGuilds) {
