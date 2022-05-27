@@ -27,7 +27,7 @@ console.log(`Testing guild IDs: ${testGuilds}`);
 for (const guildId of testGuilds) {
 	console.log(`Deploying to ${guildId}...`);
 	rest
-		.put(Routes.applicationGuildCommands(process.env.clientId, guildId), {
+		.put(Routes.applicationGuildCommands(process.env.testClientId, guildId), {
 			body: commands,
 		})
 		.then(() =>
