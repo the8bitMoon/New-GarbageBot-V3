@@ -17,9 +17,9 @@
         },
         {
             "type": "node-terminal",
-            "name": "Run Script: deploy-global",
+            "name": "Run Script: deploy-main",
             "request": "launch",
-            "command": "npm run deploy-global",
+            "command": "npm run deploy-main",
             "cwd": "${workspaceFolder}"
         }
     ]
