@@ -12,7 +12,12 @@ module.exports = {
 		),
 	async execute(interaction) {
 		const list = interaction.options.getString('list').split(/\s*\|\s*/);
-		const choice = list[Math.floor(Math.random() * list.length)];
-		return interaction.reply({ content: `I choose ${choice}!` });
+		const choiceId = Math.floor(Math.random() * list.length);
+		const msg = list
+			.map((e, i) => {
+				return i === choiceId ? `__**${e}**__` : `~~${e}~~`;
+			})
+			.join(', ');
+		return interaction.reply({ content: `I choose ${msg}!` });
 	},
 };
