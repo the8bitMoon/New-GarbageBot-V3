@@ -2,6 +2,6 @@
 
 module.exports = {
 	minutes: function (x) {
-		return x * 59_000;
+		return x * 60_000 - 59_000;
 	},
 };
