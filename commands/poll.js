@@ -61,7 +61,7 @@ module.exports = {
 				textList.push({
 					id: btn.customId,
 					name: btn.label,
-					votes: 0,
+					votes: [],
 				});
 				id++;
 				// console.log(btn);
@@ -78,16 +78,16 @@ module.exports = {
 			const labelLength = textList.reduce((longest, current) =>
 				longest.name.length > current.name.length ? longest : current,
 			).name.length;
-			console.log(labelLength);
+			// console.log(labelLength);
 			let table = '```';
 			for (const i of textList) {
 				table +=
 					i.name +
 					' ' +
-					'.'.repeat(labelLength - i.name.length + 1) +
+					'.'.repeat(labelLength - i.name.length + 3) +
 					' : ' +
-					`(${i.votes.toString().padStart(2, 0)}) ` +
-					'✅'.repeat(i.votes) +
+					`(${i.votes.length.toString().padStart(2, 0)}) ` +
+					'✅'.repeat(i.votes.length) +
 					'\n';
 			}
 			table += '```';
@@ -109,8 +109,25 @@ module.exports = {
 				});
 
 				collector.on('collect', async (i) => {
-					console.log(i);
-					textList[i.customId].votes++;
+					console.log(`${i.user.id} pressed button ${i.customId}`);
+					// textList[i.customId].votes++;
+
+					// first check if the user has already voted, and clear their vote if so
+					const prevVote = textList.find((e) => e.votes.includes(i.user.id));
+					console.log(
+						prevVote
+							? `User already pressed ${prevVote.id}`
+							: 'User has not voted yet.',
+					);
+					if (prevVote) {
+						textList[prevVote.id].votes.splice(
+							textList[prevVote.id].votes.indexOf(i.user.id),
+						);
+					}
+
+					// add the new vote
+					textList[i.customId].votes.push(i.user.id);
+
 					content =
 						interaction.options.getString('question') + '\n' + generateTable();
 					await i.update({
@@ -120,6 +137,7 @@ module.exports = {
 				});
 
 				collector.on('end', () => {
+					console.log('Poll has ended.');
 					interaction.editReply({
 						content: `${content}\n(Poll has concluded.)`,
 						components: [],
