@@ -5,6 +5,12 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Replies with Pong!'),
 	async execute(interaction) {
-		return interaction.reply('Pong!');
+		const sent = await interaction.reply({
+			content: 'Pinging...',
+			fetchReply: true,
+		});
+		interaction.editReply(
+			`Pong! ${sent.createdTimestamp - interaction.createdTimestamp}ms`,
+		);
 	},
 };

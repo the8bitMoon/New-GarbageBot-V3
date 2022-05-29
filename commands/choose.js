@@ -1,4 +1,9 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const {
+	SlashCommandBuilder,
+	bold,
+	underscore,
+	strikethrough,
+} = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,7 +20,7 @@ module.exports = {
 		const choiceId = Math.floor(Math.random() * list.length);
 		const msg = list
 			.map((e, i) => {
-				return i === choiceId ? `__**${e}**__` : `~~${e}~~`;
+				return i === choiceId ? underscore(bold(e)) : strikethrough(e);
 			})
 			.join(', ');
 		return interaction.reply({ content: `I choose ${msg}!` });
