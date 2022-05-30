@@ -1,11 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageAttachment } = require('discord.js');
-const Tenor = require('tenorjs').client({
-	Key: process.env.tenorKey,
-	Filter: 'medium',
-	Locale: 'en_US',
-	MediaFilter: 'minimal',
-});
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -18,10 +12,9 @@ module.exports = {
 				.setRequired(true),
 		),
 	async execute(interaction) {
+		console.log(interaction.client.helpers.animeGif('kick'));
 		const target = interaction.options.getUser('target');
-		const gif = await Tenor.Search.Random('anime kick', 1).then((Result) => {
-			return Result[0].media[0].tinygif.url;
-		});
+		const gif = await interaction.client.helpers.animeGif('kick');
 		console.log(gif);
 		const attachment = new MessageAttachment(gif, 'kick.gif', {
 			description: `${interaction.target} got kicked!`,

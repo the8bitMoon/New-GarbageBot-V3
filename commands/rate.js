@@ -9,11 +9,18 @@ module.exports = {
 				.setName('thing')
 				.setDescription("The thing I'm rating.")
 				.setRequired(true),
+		)
+		.addIntegerOption((option) =>
+			option.setName('scale').setDescription('The rating scale.'),
 		),
+
 	async execute(interaction) {
 		const thing = interaction.options.getString('thing');
-		return interaction.reply(
-			`I rate ${thing} **${Math.floor(Math.random() * 101)}/100.**`,
-		);
+		const scale = interaction.options.getInteger('scale')
+			? interaction.options.getInteger('scale')
+			: 100;
+
+		const rating = Math.floor(Math.random() * scale);
+		return interaction.reply(`I rate ${thing} **${rating}/${scale}**.`);
 	},
 };
