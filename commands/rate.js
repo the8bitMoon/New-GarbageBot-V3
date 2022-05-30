@@ -16,11 +16,11 @@ module.exports = {
 
 	async execute(interaction) {
 		const thing = interaction.options.getString('thing');
-		const scale = interaction.options.getInteger('scale');
+		const scale = interaction.options.getInteger('scale')
+			? interaction.options.getInteger('scale')
+			: 100;
 
-		const rating = Math.floor(Math.random() * scale ? scale : 101);
-		return interaction.reply(
-			`I rate ${thing} **${rating}/${scale ? scale : 100}**.`,
-		);
+		const rating = Math.floor(Math.random() * scale);
+		return interaction.reply(`I rate ${thing} **${rating}/${scale}**.`);
 	},
 };
