@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('rate')
-		.setDescription('Have me rate something out of 100.')
+		.setDescription('Have me rate something.')
 		.addStringOption((option) =>
 			option
 				.setName('thing')
@@ -11,7 +11,7 @@ module.exports = {
 				.setRequired(true),
 		)
 		.addIntegerOption((option) =>
-			option.setName('scale').setDescription('The rating scale.'),
+			option.setName('scale').setDescription('The rating scale. (Default 100'),
 		),
 
 	async execute(interaction) {
