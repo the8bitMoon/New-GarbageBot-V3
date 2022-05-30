@@ -1,6 +1,19 @@
 // helpers.js
+require('dotenv').config();
+const Tenor = require('tenorjs').client({
+	Key: process.env.tenorKey,
+	Filter: 'medium',
+	Locale: 'en_US',
+	MediaFilter: 'minimal',
+});
 
 module.exports = {
+	animeGif: function (keyword) {
+		return Tenor.Search.Random(`anime ${keyword}`, 1).then(
+			(Result) => Result[0].media[0].gif.url,
+		);
+	},
+
 	minutes: function (x) {
 		return x * 60_000 - 59_000;
 	},
