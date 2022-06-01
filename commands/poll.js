@@ -1,16 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, Collection } = require('discord.js');
 
-function toMatrix(arr, width) {
-	return arr.reduce(function (rows, key, index) {
-		return (
-			(index % width == 0
-				? rows.push([key])
-				: rows[rows.length - 1].push(key)) && rows
-		);
-	}, []);
-}
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('poll')
@@ -45,7 +35,7 @@ module.exports = {
 		// console.log(`List length: ${list.length}\nList contents: ${list}`);
 		const textList = [];
 		// arrange it into rows of 5
-		const matrix = toMatrix(list, 5);
+		const matrix = interaction.client.helpers.toMatrix(list, 5);
 
 		// generate the action rows
 		const rows = [];

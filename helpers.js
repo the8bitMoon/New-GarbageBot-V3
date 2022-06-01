@@ -8,10 +8,15 @@ const Tenor = require('tenorjs').client({
 });
 
 module.exports = {
+	// methods
 	animeGif: function (keyword) {
 		return Tenor.Search.Random(`anime ${keyword}`, 1).then(
 			(Result) => Result[0].media[0].gif.url,
 		);
+	},
+
+	delay: function (ms) {
+		return new Promise((resolve) => setTimeout(resolve, ms));
 	},
 
 	minutes: function (x) {
@@ -26,6 +31,17 @@ module.exports = {
 		return a.sort(() => Math.random() - 0.5);
 	},
 
+	toMatrix: function (arr, width) {
+		return arr.reduce(function (rows, key, index) {
+			return (
+				(index % width == 0
+					? rows.push([key])
+					: rows[rows.length - 1].push(key)) && rows
+			);
+		}, []);
+	},
+
+	// objects
 	emojiCharacters: {
 		a: '🇦',
 		b: '🇧',
