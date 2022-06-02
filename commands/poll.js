@@ -22,14 +22,11 @@ module.exports = {
 
 	async execute(interaction) {
 		// split the list into an array of unique elements
-		const list = [
-			...new Set(
-				interaction.options
-					.getString('list')
-					.split(/\s*\|\s*/)
-					.filter((n) => n),
-			),
-		];
+		const list = interaction.options
+			.getString('list')
+			.split(/\s*\|\s*/)
+			.filter((n) => n);
+
 		// truncate the list to 25 if necessary
 		list.length = Math.min(list.length, 25);
 		// console.log(`List length: ${list.length}\nList contents: ${list}`);

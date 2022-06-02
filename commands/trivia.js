@@ -1,12 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, Message } = require('discord.js');
 const { fetch } = require('undici');
-const path = require('node:path');
-const { delay, shuffleArray } = require(path.join(
-	__dirname,
-	'..',
-	'helpers.js',
-));
+const delay = require('node:timers/promises').setTimeout;
 
 const triviaCategories = [
 	{ value: '9', name: 'General Knowledge' },
@@ -74,6 +69,7 @@ module.exports = {
 			? interaction.options.getString('difficulty')
 			: null;
 		const timeLimit = 30_000;
+		const pauseTime = 5_000;
 		const url =
 			'https://opentdb.com/api.php' +
 			`?amount=${length}` +
@@ -81,6 +77,8 @@ module.exports = {
 			(difficulty !== null ? `&difficulty=${difficulty}` : '') +
 			'&encode=url3986';
 		console.log(url);
+
+		let scoreTracker = {};
 
 		const response = await (await fetch(url)).json();
 
@@ -97,7 +95,9 @@ module.exports = {
 
 		console.log(questions);
 		const initMessage =
-			`Starting ${length} question trivia gamein 30 seconds!` +
+			`Starting ${length} question trivia game in ${
+				timeLimit / 1_000
+			} seconds!` +
 			(category ? `\nCategory: ${triviaCategories[category].name}` : '') +
 			(difficulty ? `\nDifficulty: ${difficulty}` : '');
 
@@ -111,27 +111,88 @@ module.exports = {
 			autoArchiveDuration: 60,
 		});
 
-		questions.forEach((element, i) => {
-			console.log(element);
+		// Pause before beginning the game
+		await delay(timeLimit - pauseTime);
+		for (const question of questions) {
+			// await console.log(question);
+			// Pause a moment between questions
+			await delay(pauseTime);
 
-			// Generate buttons.
-			const btns = shuffleArray(
-				element.answers.map((a) => {
+			// Generate the buttons.
+			const btns = question.answers
+				.map((a) => {
 					return new MessageButton()
 						.setCustomId(`${a.id}`)
 						.setLabel(a.content)
 						.setStyle('PRIMARY');
-				}),
-			);
-			console.log(btns);
+				})
+				.sort((a, b) => a.label.localeCompare(b.label));
 
-			// Wait for the time limit.
-			delay(timeLimit * (i + 1)).then(() => {
-				thread.send({
-					content: element.question,
-					components: [new MessageActionRow().addComponents(btns)],
+			if (btns.length === 2) btns.reverse();
+
+			// Send the question
+			const qMessage = await thread.send({
+				content: question.question,
+				components: [new MessageActionRow().addComponents(btns)],
+			});
+
+			// Collect guild member responses.
+			const correctResponses = [];
+			const userSet = new Set();
+			const collector = qMessage.createMessageComponentCollector({
+				componentType: 'BUTTON',
+				time: timeLimit,
+			});
+
+			collector.on('collect', async (i) => {
+				// Check if user has already responded, and add their response if they haven't.
+				if (!userSet.has(i.user.id)) {
+					if (i.customId === '0') correctResponses.push(i.user);
+					userSet.add(i.user.id);
+					i.deferUpdate();
+				} else {
+					i.reply({
+						content: "You've already sent an answer.",
+						ephemeral: true,
+					});
+				}
+			});
+
+			collector.on('end', async () => {
+				// List the players that responded correctly.
+				const winners = correctResponses.join(', ');
+				correctResponses.forEach((user) => {
+					scoreTracker[user.id] =
+						scoreTracker[user.id] !== undefined ? scoreTracker[user.id] + 1 : 1;
+				});
+
+				// Edit the buttons to display the correct answer and disable them.
+				const disabled = btns.map((btn) => {
+					return new MessageButton()
+						.setCustomId(btn.customId)
+						.setLabel(btn.label)
+						.setDisabled(true)
+						.setStyle(btn.customId === '0' ? 'SUCCESS' : 'DANGER');
+				});
+				await qMessage.edit({
+					content: `${question.question}\nWinners: ${winners}`,
+					components: [new MessageActionRow().addComponents(disabled)],
 				});
 			});
-		});
+			await delay(timeLimit);
+		}
+
+		// Display the winners!
+		const gameWinners = Object.entries(scoreTracker)
+			.sort((a, b) => b[1] - a[1])
+			.map((value, i) => {
+				const ordinal = `${i + 1}.`;
+				const user = interaction.client.users.cache.get(value[0]);
+				const score = `${value[1]}/${length}`;
+				return `${ordinal} ${user}: ${score}`;
+			})
+			.join('\n');
+
+		thread.send(`Thanks for playing!\n${gameWinners}`);
 	},
 };
