@@ -98,8 +98,12 @@ module.exports = {
 			`Starting ${length} question trivia game in ${
 				timeLimit / 1_000
 			} seconds!` +
-			(category ? `\nCategory: ${triviaCategories[category].name}` : '') +
-			(difficulty ? `\nDifficulty: ${difficulty}` : '');
+			(category
+				? `\nCategory: ${triviaCategories
+						.find((obj) => obj.value == category)
+						.name.toLocaleUpperCase()}`
+				: '') +
+			(difficulty ? `\nDifficulty: ${difficulty.toLocaleUpperCase()}` : '');
 
 		// Send the intro message
 		await interaction.reply(initMessage);
