@@ -10,9 +10,7 @@ const Tenor = require('tenorjs').client({
 module.exports = {
 	// methods
 	animeGif: function (keyword) {
-		return Tenor.Search.Random(`anime ${keyword}`, 1).then(
-			(Result) => Result[0].media[0].gif.url,
-		);
+		return this.randomGif(`anime ${keyword}`);
 	},
 
 	delay: function (ms) {
@@ -27,8 +25,20 @@ module.exports = {
 		return a[Math.floor(Math.random() * a.length)];
 	},
 
+	randomGif: function (keyword) {
+		return Tenor.Search.Random(keyword, 1).then(
+			(Result) => Result[0].media[0].gif.url,
+		);
+	},
+
 	shuffleArray: function (a) {
 		return a.sort(() => Math.random() - 0.5);
+	},
+
+	tenorGif: function (id) {
+		return Tenor.Search.Find([id.toString()]).then(
+			(Result) => Result[0].media[0].gif.url,
+		);
 	},
 
 	toMatrix: function (arr, width) {
