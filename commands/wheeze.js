@@ -6,7 +6,7 @@ module.exports = {
 	async execute(interaction) {
 		const gif = await interaction.client.helpers.tenorGif('14359545');
 
-		const attachment = new MessageAttachment(gif, 'hug.gif');
+		const attachment = new MessageAttachment(gif, 'wheeze.gif');
 
 		await interaction.deferReply();
 		return interaction.editReply({
