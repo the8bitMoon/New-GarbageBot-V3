@@ -28,41 +28,41 @@ module.exports = {
 						.setStyle('SHORT')
 						.setValue(interaction.targetMessage.cleanContent.substring(0, 32)),
 				),
-				new MessageActionRow().addComponents(
-					new MessageSelectMenu()
-						.setCustomId('styleInput')
-						.setPlaceholder('Textbox Style')
-						.addOptions([
-							{ label: 'Original Style', value: '0' },
-							{ label: 'Trilogy HD Style', value: '1', default: true },
-							{ label: 'Apollio Justice Style', value: '2' },
-							{ label: 'Chronicles Style', value: '3' },
-						]),
-				),
-				new MessageActionRow().addComponents(
-					new MessageSelectMenu()
-						.setCustomId('optionsInput')
-						.setPlaceholder('Options')
-						.setMinValues(0)
-						.setMaxValues(2)
-						.addOptions(
-							[
-								{
-									label: 'Music',
-									description:
-										'Select music at random. Disable to set no music.',
-									value: 'musicDisabled',
-									default: true,
-								},
-								{
-									label: 'Anonymous',
-									description:
-										'If set, the objection will NOT replace character names with discord usernames.',
-									value: 'anonymous',
-								},
-							].sort((a, b) => a.label.localeCompare(b.label)),
-						),
-				),
+				// new MessageActionRow().addComponents(
+				// 	new MessageSelectMenu()
+				// 		.setCustomId('styleInput')
+				// 		.setPlaceholder('Textbox Style')
+				// 		.addOptions([
+				// 			{ label: 'Original Style', value: '0' },
+				// 			{ label: 'Trilogy HD Style', value: '1', default: true },
+				// 			{ label: 'Apollio Justice Style', value: '2' },
+				// 			{ label: 'Chronicles Style', value: '3' },
+				// 		]),
+				// ),
+				// new MessageActionRow().addComponents(
+				// 	new MessageSelectMenu()
+				// 		.setCustomId('optionsInput')
+				// 		.setPlaceholder('Options')
+				// 		.setMinValues(0)
+				// 		.setMaxValues(2)
+				// 		.addOptions(
+				// 			[
+				// 				{
+				// 					label: 'Music',
+				// 					description:
+				// 						'Select music at random. Disable to set no music.',
+				// 					value: 'musicDisabled',
+				// 					default: true,
+				// 				},
+				// 				{
+				// 					label: 'Anonymous',
+				// 					description:
+				// 						'If set, the objection will NOT replace character names with discord usernames.',
+				// 					value: 'anonymous',
+				// 				},
+				// 			].sort((a, b) => a.label.localeCompare(b.label)),
+				// 		),
+				// ),
 			);
 		await interaction.showModal(settingsModal);
 		interaction.client.on('interactionCreate', (modal) => {
@@ -70,8 +70,8 @@ module.exports = {
 			// console.log('fields:', modal.fields.components[1].components);
 			const options = {
 				name: modal.fields.getTextInputValue('nameInput'),
-				style: modal.fields.getField('styleInput'),
-				options: modal.fields.getField('optionsInput'),
+				// style: modal.fields.getField('styleInput'),
+				// options: modal.fields.getField('optionsInput'),
 			};
 			return run(modal, options, interaction);
 		});
@@ -156,12 +156,19 @@ const run = async (interaction, options, initialInteraction) => {
 			: msg.text.includes('?')
 			? Objection.speechBubbles.holdIt
 			: 0;
+
+		// Generate text with tags.
+		let text = '';
+		if (bubble === Objection.speechBubbles.objection && Math.random() > 0.7)
+			text += helpers.randomElement(Objection.music.objection);
+		if (msg.frameId === 1) text += helpers.randomElement(Objection.music.trial);
+		text += msg.text;
+		if (msg.attachments.size || msg.embeds.length)
+			text += '\n[#bgs8][#/g][File submitted to court record.][/#]';
+
 		return {
 			iid: msg.frameId,
-			text:
-				msg.attachments.size || msg.embeds.length
-					? msg.text + '\n[#bgs8][#/g][File submitted to court record.][/#]'
-					: msg.text,
+			text: text,
 			poseId: helpers.randomElement(character.animations).id,
 			bubbleType: bubble,
 			poseAnimation: true,
@@ -182,7 +189,7 @@ const run = async (interaction, options, initialInteraction) => {
 	const scene = {
 		type: Objection.type,
 		options: {
-			chatbox: options.style.value ? options.style.value : Objection.chatbox,
+			chatbox: Objection.chatbox,
 			textSpeed: Objection.textSpeed,
 			textBlipFrequency: Objection.textBlipFrequency,
 			autoplaySpeed: Objection.autoplaySpeed,
