@@ -159,7 +159,7 @@ const run = async (interaction, options, initialInteraction) => {
 
 		// Generate text with tags.
 		let text = '';
-		if (bubble === Objection.speechBubbles.objection && Math.random() > 0.7)
+		if (bubble && Math.random() > 0.5)
 			text += helpers.randomElement(Objection.music.objection);
 		if (msg.frameId === 1) text += helpers.randomElement(Objection.music.trial);
 		text += msg.text;
