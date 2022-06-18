@@ -82,6 +82,11 @@ const run = async (interaction, options, initialInteraction) => {
 	const helpers = interaction.client.helpers;
 	// === FETCH THE MESSAGES AND UNIQUE USERS ===
 	const start = initialInteraction.targetMessage;
+	const title = options.name
+		? options.name
+		: start.cleanContent
+		? start.cleanContent.substring(0, 32)
+		: 'objection';
 	const fetched = await interaction.channel.messages.fetch({
 		limit: 99,
 		after: start.id,
@@ -153,7 +158,10 @@ const run = async (interaction, options, initialInteraction) => {
 			: 0;
 		return {
 			iid: msg.frameId,
-			text: msg.text,
+			text:
+				msg.attachments.size || msg.embeds.length
+					? msg.text + '\n[#bgs8][#/g][File submitted to court record.][/#]'
+					: msg.text,
 			poseId: helpers.randomElement(character.animations).id,
 			bubbleType: bubble,
 			poseAnimation: true,
@@ -197,7 +205,7 @@ const run = async (interaction, options, initialInteraction) => {
 	// console.log(stringified);
 	const attachment = new MessageAttachment(
 		Buffer.from(stringified, 'utf-8'),
-		`${options.name}.objection`,
+		`${title}.objection`,
 	);
 	// return interaction.reply(codeBlock('json', stringified));
 	return interaction.reply({
