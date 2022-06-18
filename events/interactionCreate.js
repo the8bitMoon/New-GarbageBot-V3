@@ -6,7 +6,7 @@ module.exports = {
 		const command = interaction.client.commands.get(interaction.commandName);
 
 		console.log(
-			`${interaction.user.tag} in #${interaction.channel.name} triggered ${command.data.name} command.`,
+			`${interaction.user.tag} in #${interaction.channel.name} triggered ${interaction.id}.`,
 		);
 
 		if (!command) return;
