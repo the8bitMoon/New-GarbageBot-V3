@@ -1,0 +1,353 @@
+{
+	"type": "scene",
+	"chatbox": 1,
+	"textSpeed": 35,
+	"textBlipFrequency": 64,
+	"autoplaySpeed": 1000,
+	"continueSoundUrl": "/Audio/Case/Continue_Trilogy.wav",
+	"backgroundId": 72269,
+	"transitionSpeed": 500,
+	"easing": "easeInOutQuint",
+	"speechBubbles": { "objection": 1, "holdIt": 2, "takeThat": 3 },
+	"music": {
+		"trial": ["[#bgm2]", "[#bgm3]", "[#bgm80]", "[#bgm9]"],
+		"objection": [
+			"[#bgm14]",
+			"[#bgm76]",
+			"[#bgm8]",
+			"[#bgm24]",
+			"[#bgm81]",
+			"[#bgm74]"
+		]
+	},
+	"defense": {
+		"align": 0,
+		"characters": [
+			{
+				"id": 1,
+				"name": "Phoenix",
+				"animations": [
+					{ "id": 1, "name": "Stand" },
+					{ "id": 2, "name": "Desk Slam" },
+					{ "id": 3, "name": "Point" },
+					{ "id": 4, "name": "Confident" },
+					{ "id": 33, "name": "Thinking" },
+					{ "id": 34, "name": "Cornered" },
+					{ "id": 35, "name": "Silly" },
+					{ "id": 59, "name": "Read" },
+					{ "id": 76, "name": "Sip Mug" },
+					{ "id": 100, "name": "Nod" },
+					{ "id": 101, "name": "Headshake" },
+					{ "id": 129, "name": "Damage" },
+					{ "id": 406, "name": "Damage (custom)" },
+					{ "id": 140, "name": "Breakdown" },
+					{ "id": 188, "name": "Coffee Stained" },
+					{ "id": 271, "name": "Yell" },
+					{ "id": 358, "name": "Hair Stained" },
+					{ "id": 519, "name": "Super Objection" }
+				]
+			},
+			{
+				"id": 4,
+				"name": "Mia",
+				"animations": [
+					{ "id": 15, "name": "Stand" },
+					{ "id": 16, "name": "Desk Slam" },
+					{ "id": 17, "name": "Point" },
+					{ "id": 18, "name": "Confident" },
+					{ "id": 38, "name": "Thinking" },
+					{ "id": 39, "name": "Cornered" },
+					{ "id": 244, "name": "Damage" },
+					{ "id": 273, "name": "Yell" },
+					{ "id": 409, "name": "Damage (custom)" }
+				]
+			},
+			{
+				"id": 11,
+				"name": "Apollo",
+				"animations": [
+					{ "id": 55, "name": "Confident" },
+					{ "id": 56, "name": "Silly (eyes closed)" },
+					{ "id": 57, "name": "Desk slam" },
+					{ "id": 58, "name": "Read" },
+					{ "id": 60, "name": "Stand" },
+					{ "id": 61, "name": "Point" },
+					{ "id": 62, "name": "Cornered" },
+					{ "id": 63, "name": "Think" },
+					{ "id": 402, "name": "Smile" },
+					{ "id": 403, "name": "Silly" },
+					{ "id": 404, "name": "Damage" },
+					{ "id": 405, "name": "Damage (custom)" },
+					{ "id": 415, "name": "Think (eyes closed)" },
+					{ "id": 416, "name": "Yell" }
+				]
+			}
+		]
+	},
+	"prosecution": {
+		"align": 100,
+		"characters": [
+			{
+				"id": 2,
+				"name": "Edgeworth",
+				"animations": [
+					{ "id": 5, "name": "Stand" },
+					{ "id": 6, "name": "Desk Slam" },
+					{ "id": 7, "name": "Point" },
+					{ "id": 8, "name": "Arms Crossed" },
+					{ "id": 9, "name": "Confident Shrug" },
+					{ "id": 36, "name": "Cornered" },
+					{ "id": 47, "name": "Confident Smirk" },
+					{ "id": 89, "name": "Read" },
+					{ "id": 90, "name": "Damage" },
+					{ "id": 185, "name": "Smirk" },
+					{ "id": 189, "name": "Bow" },
+					{ "id": 272, "name": "Yell" },
+					{ "id": 407, "name": "Damage (custom)" }
+				]
+			},
+			{
+				"id": 6,
+				"name": "Payne",
+				"animations": [
+					{ "id": 19, "name": "Stand" },
+					{ "id": 20, "name": "Confident" },
+					{ "id": 40, "name": "Cornered" },
+					{ "id": 190, "name": "Damage" },
+					{ "id": 410, "name": "Damage (custom)" }
+				]
+			},
+			{
+				"id": 7,
+				"name": "von Karma",
+				"animations": [
+					{ "id": 21, "name": "Stand" },
+					{ "id": 22, "name": "Confident" },
+					{ "id": 23, "name": "Desk Slam" },
+					{ "id": 24, "name": "Arms Crossed" },
+					{ "id": 25, "name": "Point" },
+					{ "id": 26, "name": "Whip Desk" },
+					{ "id": 41, "name": "Cornered" },
+					{ "id": 192, "name": "Damage" },
+					{ "id": 193, "name": "Bow" },
+					{ "id": 274, "name": "Yell" },
+					{ "id": 411, "name": "Damage (custom)" }
+				]
+			},
+			{
+				"id": 8,
+				"name": "Karma",
+				"animations": [
+					{ "id": 27, "name": "Stand" },
+					{ "id": 28, "name": "Confident" },
+					{ "id": 29, "name": "Arms Crossed" },
+					{ "id": 42, "name": "Cornered" },
+					{ "id": 43, "name": "Snap Finger" },
+					{ "id": 191, "name": "Damage" },
+					{ "id": 309, "name": "Breakdown (1)" },
+					{ "id": 310, "name": "Breakdown (2)" },
+					{ "id": 412, "name": "Damage (custom)" }
+				]
+			},
+			{
+				"id": 12,
+				"name": "Klavier",
+				"animations": [
+					{ "id": 64, "name": "Cornered" },
+					{ "id": 65, "name": "Stand" },
+					{ "id": 66, "name": "Point" },
+					{ "id": 67, "name": "Think" },
+					{ "id": 68, "name": "Laugh" },
+					{ "id": 69, "name": "Air Guitar" },
+					{ "id": 70, "name": "Look Up" },
+					{ "id": 217, "name": "Wall Slam" },
+					{ "id": 401, "name": "Damage" },
+					{ "id": 414, "name": "Damage (custom)" },
+					{ "id": 689, "name": "Yell" },
+					{ "id": 745, "name": "Cornered 2" }
+				]
+			},
+			{
+				"id": 25,
+				"name": "Godot",
+				"animations": [
+					{ "id": 173, "name": "Desk Slam (with mug)" },
+					{ "id": 174, "name": "Desk Slam" },
+					{ "id": 175, "name": "Stand" },
+					{ "id": 176, "name": "New Mug Sip" },
+					{ "id": 177, "name": "Point (with mug)" },
+					{ "id": 178, "name": "Point" },
+					{ "id": 179, "name": "Cornered" },
+					{ "id": 180, "name": "Confident" },
+					{ "id": 181, "name": "Confident (with mug)" },
+					{ "id": 182, "name": "Think" },
+					{ "id": 184, "name": "Mug Sip" },
+					{ "id": 218, "name": "Damage" },
+					{ "id": 219, "name": "Throw Mug" },
+					{ "id": 275, "name": "Yell" },
+					{ "id": 413, "name": "Damage (custom)" },
+					{ "id": 520, "name": "Mask Explosion" }
+				]
+			}
+		]
+	},
+	"counsel": {
+		"align": 0,
+		"backgroundId": null,
+		"characters": [
+			{
+				"id": 16,
+				"name": "Maya",
+				"animations": [
+					{ "id": 102, "name": "Stand" },
+					{ "id": 103, "name": "Angry" },
+					{ "id": 104, "name": "Dull" },
+					{ "id": 105, "name": "Thinking" },
+					{ "id": 106, "name": "Determined" }
+				]
+			},
+			{
+				"id": 47,
+				"name": "Grossberg",
+				"animations": [
+					{ "id": 359, "name": "Stand" },
+					{ "id": 360, "name": "Cornered" }
+				]
+			},
+			{
+				"id": 50,
+				"name": "Byrde",
+				"animations": [
+					{ "id": 369, "name": "Stand" },
+					{ "id": 370, "name": "Pumped" }
+				]
+			},
+			{
+				"id": 60,
+				"name": "Kristoph",
+				"animations": [
+					{ "id": 458, "name": "Stand" },
+					{ "id": 459, "name": "Side" },
+					{ "id": 460, "name": "Smile" }
+				]
+			},
+			{
+				"id": 72,
+				"name": "Trucy",
+				"animations": [
+					{ "id": 560, "name": "Stand" },
+					{ "id": 561, "name": "Think" },
+					{ "id": 562, "name": "Determined" },
+					{ "id": 563, "name": "Side" }
+				]
+			}
+		]
+	},
+	"recurring": {
+		"align": 50,
+		"characters": [
+			{
+				"id": 21,
+				"name": "Gumshoe",
+				"animations": [
+					{ "id": 130, "name": "Stand" },
+					{ "id": 131, "name": "Confident" },
+					{ "id": 132, "name": "Giggle" },
+					{ "id": 133, "name": "Pumped" },
+					{ "id": 134, "name": "Sad" },
+					{ "id": 135, "name": "Stare" },
+					{ "id": 136, "name": "Angry" },
+					{ "id": 137, "name": "Headscratch" }
+				]
+			},
+			{
+				"id": 65,
+				"name": "Ema",
+				"animations": [
+					{ "id": 496, "name": "Stand" },
+					{ "id": 497, "name": "Side" },
+					{ "id": 498, "name": "Glasses Off" },
+					{ "id": 499, "name": "Think" },
+					{ "id": 500, "name": "Confident" },
+					{ "id": 501, "name": "Surprised" },
+					{ "id": 502, "name": "Annoyed" },
+					{ "id": 503, "name": "Eating" },
+					{ "id": 504, "name": "Eating (faster)" },
+					{ "id": 505, "name": "Smile" },
+					{ "id": 506, "name": "Serious" },
+					{ "id": 507, "name": "Glasses On" }
+				]
+			},
+			{
+				"id": 27,
+				"name": "Butz",
+				"animations": [
+					{ "id": 206, "name": "Stand" },
+					{ "id": 207, "name": "Happy" },
+					{ "id": 208, "name": "Think" },
+					{ "id": 209, "name": "Think 2" },
+					{ "id": 210, "name": "Cry" },
+					{ "id": 211, "name": "Cornered" },
+					{ "id": 212, "name": "Nervous" },
+					{ "id": 213, "name": "Thumbs Up" },
+					{ "id": 214, "name": "Surprised" }
+				]
+			},
+			{
+				"id": 24,
+				"name": "Dahlia",
+				"animations": [
+					{ "id": 164, "name": "Stand" },
+					{ "id": 165, "name": "Happy" },
+					{ "id": 166, "name": "Cry" },
+					{ "id": 167, "name": "Nervous" },
+					{ "id": 168, "name": "Uncertain" },
+					{ "id": 169, "name": "Hair Play" },
+					{ "id": 170, "name": "Look Away" },
+					{ "id": 171, "name": "Damage" },
+					{ "id": 172, "name": "Angry" }
+				]
+			},
+			{
+				"id": 54,
+				"name": "Meekins",
+				"animations": [
+					{ "id": 391, "name": "Stand" },
+					{ "id": 392, "name": "Salute" },
+					{ "id": 393, "name": "Pumped" },
+					{ "id": 394, "name": "Think" },
+					{ "id": 395, "name": "Megaphone" },
+					{ "id": 396, "name": "Damage" },
+					{ "id": 397, "name": "Sad" },
+					{ "id": 398, "name": "Stare" }
+				]
+			},
+			{
+				"id": 30,
+				"name": "Oldbag",
+				"animations": [
+					{ "id": 228, "name": "Stand" },
+					{ "id": 229, "name": "Angry" },
+					{ "id": 230, "name": "Confident" },
+					{ "id": 231, "name": "Wave" },
+					{ "id": 232, "name": "Damage" },
+					{ "id": 233, "name": "In Love" }
+				]
+			},
+			{
+				"id": 10,
+				"name": "Judge",
+				"backgroundId": null,
+				"align": 0,
+				"animations": [
+					{ "id": 30, "name": "Stand" },
+					{ "id": 31, "name": "Negative" },
+					{ "id": 32, "name": "Surprised" },
+					{ "id": 44, "name": "Positive" },
+					{ "id": 186, "name": "Eyes Closed" },
+					{ "id": 604, "name": "Headshake" }
+				]
+			}
+		]
+	}
+}
