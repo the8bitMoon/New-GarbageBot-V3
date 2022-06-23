@@ -8,7 +8,10 @@
 		"test": "node index.js",
 		"deploy": "node deploy-commands.js",
 		"clear": "node clear-guild-commands.js",
-		"deploy-main": "node deploy-commands-main.js"
+		"deploy-main": "node deploy-commands-main.js",
+		"patch": "npm version patch --force -m \"version%s\"",
+		"minor": "npm version minor --force -m \"version%s\"",
+		"major": "npm version major --force -m \"version%s\""
 	},
 	"repository": {
 		"type": "git",
