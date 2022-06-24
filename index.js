@@ -13,16 +13,28 @@ client.helpers = helpers;
 
 // Command Handler
 client.commands = new Collection();
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs
-	.readdirSync(commandsPath)
-	.filter((file) => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
-	client.commands.set(command.data.name, command);
+const commandDirs = [
+	path.join(__dirname, 'commands', 'slash commands'),
+	path.join(__dirname, 'commands', 'context commands'),
+];
+for (const commandsPath of commandDirs) {
+	const commandFiles = fs
+		.readdirSync(commandsPath)
+		.filter((file) => file.endsWith('.js'));
+	for (const file of commandFiles) {
+		const filePath = path.join(commandsPath, file);
+		const command = require(filePath);
+		client.commands.set(command.data.name, command);
+	}
 }
+// const commandFiles = [
+// 	fs.readdirSync(slashCommandsPath).filter((file) => file.endsWith('.js')),
+// 	fs.readdirSync(contextCommandsPath).filter((file) => file.endsWith('.js')),
+// ];
+
+// for (const commandDir of commandFiles) {
+
+// }
 
 // Event Handler
 const eventsPath = path.join(__dirname, 'events');

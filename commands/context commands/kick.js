@@ -1,24 +1,5 @@
-const {
-	SlashCommandBuilder,
-	ContextMenuCommandBuilder,
-} = require('@discordjs/builders');
+const { ContextMenuCommandBuilder } = require('@discordjs/builders');
 const { MessageAttachment } = require('discord.js');
-
-module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('kick')
-		.setDescription('Kick someone!')
-		.addUserOption((option) =>
-			option
-				.setName('target')
-				.setDescription('The member to kick.')
-				.setRequired(true),
-		),
-	async execute(interaction) {
-		const target = interaction.options.getUser('target');
-		return await run(interaction, target);
-	},
-};
 
 module.exports = {
 	data: new ContextMenuCommandBuilder().setName('kick').setType(2),
