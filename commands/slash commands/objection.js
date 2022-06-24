@@ -8,7 +8,12 @@ const {
 	MessageSelectMenu,
 } = require('discord.js');
 const Path = require('path');
-const Objection = require(Path.join(__dirname, '..', 'objection-config.json'));
+const Objection = require(Path.join(
+	__dirname,
+	'..',
+	'..',
+	'objection-config.json',
+));
 
 module.exports = {
 	data: new ContextMenuCommandBuilder().setName('objection').setType(3),
