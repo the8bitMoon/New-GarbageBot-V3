@@ -11,18 +11,15 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('anime-gif')
 		.setDescription('Send a random anime gif.')
-		.addUserOption((option) =>
-			option
-				.setName('target')
-				.setDescription('The user to ping.')
-				.setRequired(true),
-		)
 		.addStringOption((option) =>
 			option
 				.setName('category')
 				.setDescription('the gif you want')
-				.setChoices(...keywords.map((t) => ({ name: t, value: t })))
+				// .setChoices(...keywords.map((t) => ({ name: t, value: t })))
 				.setRequired(true),
+		)
+		.addUserOption((option) =>
+			option.setName('target').setDescription('Ping someone.'),
 		),
 	async execute(interaction) {
 		const target = interaction.options.getUser('target');
@@ -31,7 +28,7 @@ module.exports = {
 		const attachment = new MessageAttachment(gif, `${keyword}.gif`);
 		await interaction.deferReply();
 		return interaction.editReply({
-			content: `${interaction.user} gives ${target} a ${keyword}!`,
+			content: `${target || ' '}`,
 			files: [attachment],
 		});
 	},
