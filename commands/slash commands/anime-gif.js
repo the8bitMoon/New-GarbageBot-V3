@@ -5,25 +5,22 @@ const {
 const { MessageAttachment } = require('discord.js');
 const { execute } = require('./trivia');
 
-const keywords = ['hug', 'kiss', 'kick', 'slap'];
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('anime-gif')
 		.setDescription('Send a random anime gif.')
 		.addStringOption((option) =>
 			option
-				.setName('category')
-				.setDescription('the gif you want')
-				// .setChoices(...keywords.map((t) => ({ name: t, value: t })))
+				.setName('search')
+				.setDescription('A keyword or phrase.')
 				.setRequired(true),
 		)
 		.addUserOption((option) =>
-			option.setName('target').setDescription('Ping someone.'),
+			option.setName('target').setDescription('Ping someone?'),
 		),
 	async execute(interaction) {
 		const target = interaction.options.getUser('target');
-		const keyword = interaction.options.getString('category');
+		const keyword = interaction.options.getString('saerch');
 		const gif = await interaction.client.helpers.animeGif(keyword);
 		const attachment = new MessageAttachment(
 			gif,
