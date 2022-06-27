@@ -20,7 +20,7 @@ module.exports = {
 		),
 	async execute(interaction) {
 		const target = interaction.options.getUser('target');
-		const keyword = interaction.options.getString('saerch');
+		const keyword = interaction.options.getString('search');
 		const gif = await interaction.client.helpers.animeGif(keyword);
 		const attachment = new MessageAttachment(
 			gif,
