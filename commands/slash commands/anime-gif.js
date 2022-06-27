@@ -25,9 +25,12 @@ module.exports = {
 		const target = interaction.options.getUser('target');
 		const keyword = interaction.options.getString('category');
 		const gif = await interaction.client.helpers.animeGif(keyword);
-		const attachment = new MessageAttachment(gif, `${keyword}.gif`);
+		const attachment = new MessageAttachment(
+			gif,
+			`${encodeURIComponent(keyword)}.gif`,
+		);
 		await interaction.deferReply();
-		return interaction.editReply({
+		return interaction.followUp({
 			content: `${target || ' '}`,
 			files: [attachment],
 		});

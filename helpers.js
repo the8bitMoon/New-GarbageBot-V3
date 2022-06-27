@@ -27,7 +27,7 @@ module.exports = {
 
 	randomGif: function (keyword) {
 		return Tenor.Search.Random(keyword, 1).then(
-			(Result) => Result[0].media[0].gif.url,
+			(Result) => Result[0].media[0].tinygif.url,
 		);
 	},
 
