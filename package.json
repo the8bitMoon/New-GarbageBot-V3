@@ -1,6 +1,6 @@
 {
 	"name": "new-garbagebot-v3",
-	"version": "1.3.3",
+	"version": "1.4.0",
 	"description": "Starting the GarbageBot project over with the new Discord API features.",
 	"main": "index.js",
 	"scripts": {
