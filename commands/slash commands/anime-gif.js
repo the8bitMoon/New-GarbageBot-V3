@@ -1,7 +1,4 @@
-const {
-	SlashCommandBuilder,
-	ContextMenuCommandBuilder,
-} = require('@discordjs/builders');
+const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageAttachment } = require('discord.js');
 const { execute } = require('./trivia');
 
