@@ -1,6 +1,6 @@
 {
 	"name": "new-garbagebot-v3",
-	"version": "1.3.3",
+	"version": "1.4.0",
 	"description": "Starting the GarbageBot project over with the new Discord API features.",
 	"main": "index.js",
 	"scripts": {
@@ -30,6 +30,7 @@
 	"dependencies": {
 		"@discordjs/builders": "latest",
 		"@discordjs/rest": "latest",
+		"@sapphire/discord.js-utilities": "^4.11.3",
 		"discord-api-types": "latest",
 		"discord.js": "latest",
 		"dotenv": "latest",
