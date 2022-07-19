@@ -32,7 +32,7 @@
 		"@discordjs/rest": "latest",
 		"@sapphire/discord.js-utilities": "^4.11.3",
 		"discord-api-types": "latest",
-		"discord.js": "latest",
+		"discord.js": "^13.8.0",
 		"dotenv": "latest",
 		"tenorjs": "latest",
 		"undici": "latest"
