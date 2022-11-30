@@ -30,10 +30,12 @@
 	"dependencies": {
 		"@discordjs/builders": "latest",
 		"@discordjs/rest": "latest",
+		"@napi-rs/canvas": "^0.1.30",
 		"@sapphire/discord.js-utilities": "^4.11.3",
 		"discord-api-types": "latest",
 		"discord.js": "latest",
 		"dotenv": "latest",
+		"image-size": "^1.0.2",
 		"tenorjs": "latest",
 		"undici": "latest"
 	}
