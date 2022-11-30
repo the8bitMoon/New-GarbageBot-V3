@@ -6,6 +6,7 @@ const Tenor = require('tenorjs').client({
 	Locale: 'en_US',
 	MediaFilter: 'minimal',
 });
+const { fetch } = require('undici');
 
 module.exports = {
 	// methods
@@ -15,6 +16,13 @@ module.exports = {
 
 	delay: function (ms) {
 		return new Promise((resolve) => setTimeout(resolve, ms));
+	},
+
+	getImageBuffer: async function (url) {
+		const response = await fetch(url);
+		const arrayBuffer = await response.arrayBuffer();
+		const buffer = Buffer.from(arrayBuffer);
+		return buffer;
 	},
 
 	minutes: function (x) {
