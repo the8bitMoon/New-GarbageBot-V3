@@ -10,7 +10,7 @@ const { MessageAttachment } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('pep-talk')
-		.setDescription('Get some encouragement.'),
+		.setDescription('Get some encouragement from an anime girl!'),
 	async execute(interaction) {
 		const pepTalks = {
 			col1: [
