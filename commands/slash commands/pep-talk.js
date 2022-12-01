@@ -77,7 +77,7 @@ module.exports = {
 			],
 			col4: [
 				'24//7',
-				'cat I get an amen?',
+				'can I get an amen?',
 				"and that's a fact.",
 				'so treat yourself',
 				'you feel me?',
@@ -134,7 +134,6 @@ module.exports = {
 		let fontSize = 70;
 		do {
 			ctx.font = `${(fontSize -= 5)}px Anton`;
-			console.log(ctx.font);
 		} while (
 			ctx.measureText(line1).width > canvas.width - 20 ||
 			ctx.measureText(line2).width > canvas.width - 20
